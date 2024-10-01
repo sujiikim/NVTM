@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="Given a video and a text prompt, Dreamix edits the video while maintaining fidelity to color, posture, object size and camera pose, resulting in a temporally consistent video.">
+    <meta property="og:title" content="Dreamix: Video Diffusion Models are General Video Editors" />
+    <meta property="og:description"
+        content="Given a video and a text prompt, Dreamix edits the video while maintaining fidelity to color, posture, object size and camera pose, resulting in a temporally consistent video." />
+    <meta property="og:url" content="https://dreamix-video-editing.github.io" />
+    <meta property="og:image" content="static/image/og_banner_image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+
+    <meta name="twitter:title" content="Dreamix: Video Diffusion Models are General Video Editors">
+    <meta name="twitter:description"
+        content="Given a video and a text prompt, Dreamix edits the video while maintaining fidelity to color, posture, object size and camera pose, resulting in a temporally consistent video.">
+    <meta name="twitter:image" content="static/images/twitter_banner_image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="keywords" content="Video diffusion models, video editing, dreamix, dreambooth, imagen-video">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>NVTM</title>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+</head>
+
+<body>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">Efficient Neural Video Representation with Temporally
+                            Coherent Modulation</h1>
+                        <div class="is-size-5 publication-authors">
+                            <!-- Paper authors -->
+                            <span class="author-block">Seungjun Shin<sup>*</sup>,</span>
+                            <span class="author-block">Suji Kim<sup>*</sup>,</span>
+                            <span class="author-block">Dokwan Oh</span>
+                            <!-- <span class="author-block">
+                                <a href="https://sujiikim.github.io/NVTM/" target="_blank">Suji
+                                    Kim</a><sup>*</sup>,</span> -->
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">Samsung Advanced Institute of Technology<br><span
+                                    style="font-weight: bold;">ECCV 2024(<span
+                                        style="color: red;font-weight: bold;">Oral</span>)</span></span>
+                            <span class="eql-cntrb"><small><br><sup>*</sup>equal contribution</small></span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- Arxiv PDF link -->
+                                <!-- <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span> -->
+                                <!-- Supplementary PDF link -->
+                                <!-- <span class="link-block">
+                                    <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Supplementary</span>
+                                    </a>
+                                </span> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Teaser video-->
+    <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <video poster="" id="tree" autoplay controls muted loop height="100%">
+                    <!-- Your video here -->
+                    <source src="static/videos/teaser_ReadySetGo_stepby_per90_fps60.mp4" type="video/mp4">
+                </video>
+                <h2 class="subtitle has-text-centered">
+                    <span style="font-weight: bold;">NVTM: Neural Video representation with Temporally coherent
+                        Modulation</span>
+                </h2>
+                <h2 class="subtitle has-text-centered">
+                    NVTM is a <span style="color: red;"><span style="font-weight: bold;">computing-efficient</span>
+                        (fast encoding speed)</span> and <span style="color: red;"><span
+                            style="font-weight: bold;">parameter-efficient</span>
+                        (high reconstruction quality)</span> INR framework for videos </span> by taking into account the
+                    dynamic
+                    characteristics of videos. The key idea is utilizing a series of 2D grid-types to represent videos
+                    by
+                    employing the same modulation to the corresponding pixels.
+                </h2>
+            </div>
+        </div>
+    </section>
+    <!-- End teaser video -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Implicit neural representations (INR) has found successful applications across diverse
+                            domains. To employ INR in real-life, it is important to speed up training. In the field of
+                            INR for video applications, the state-of-the-art approach employs grid-type parametric
+                            encoding and successfully achieves a faster encoding speed in comparison to its
+                            predecessors. However, the grid usage, which does not consider the video’s dynamic nature,
+                            leads to redundant use of trainable parameters. As a result, it has significantly lower
+                            parameter efficiency and higher bitrate compared to NeRV-style methods that do not use a
+                            parametric encoding. To address the problem, we propose Neural Video representation with
+                            Temporally coherent Modulation (NVTM), a novel framework that can capture dynamic
+                            characteristics of video. By decomposing the spatio-temporal 3D video data into a set of 2D
+                            grids with flow information, NVTM enables learning video representation rapidly and uses
+                            parameter efficiently. Our framework enables to process temporally corresponding pixels at
+                            once, resulting in the fastest encoding speed for a reasonable video quality, especially
+                            when compared to the NeRV-style method, with a speed increase of over 3 times. Also, it
+                            remarks an average of 1.54dB/0.019 improvements in PSNR/LPIPS on UVG (Dynamic) (even with
+                            10% fewer parameters) and an average of 1.84dB/0.013 improvements in PSNR/LPIPS on MCL-JCV
+                            (Dynamic), compared to previous grid-type works. By expanding this to compression tasks, we
+                            demonstrate comparable performance to video compression standards (H.264, HEVC) and recent
+                            INR approaches for video compression. Additionally, we perform extensive experiments
+                            demonstrating the superior performance of our algorithm across diverse tasks, encompassing
+                            super resolution, frame interpolation and video inpainting.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End paper abstract -->
+
+    <!-- Methodology -->
+    <section class="section hero is-small">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column is-full">
+                    <div class="content">
+                        <h2 class="title is-3">Methodology</h2>
+                        <center>
+                            <img src="static/images/architecture.png" alt="architecture"
+                                class="center-image blend-img-background" />
+                        </center>
+                        <div class="level-set has-text-justified">
+                            <p>
+                                NVTM generates the same modulation latent for temporally correlated pixels between
+                                consecutive frames, and the latent is used to modulate the base network. To obtain this
+                                latent, 1) input video is split into GOP units, 2) network F generates an alignment flow
+                                to transform 3D coordinate to specific time in k-th GOP unit, 3) 2D aligned coordinated
+                                is obtained by adding (x,y) and the alignment flow. 4) The temporally coherent latent is
+                                extracted from the latent grid Gk using normalized coordinate. Following the process,
+                                the temporally correlated 3D coordinates are mapped to the same 2D coordinate, thereby
+                                ensuring they share the same modulation latent representation. This shared modulation
+                                helps in the fast and efficient learning of video representation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End methodology -->
+
+    <!-- Video compression -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container  is-max-desktop">
+                <h2 class="title is-3">Fast Encoding Speed</h2>
+                <video poster="" id="tree" autoplay controls muted loop style="width: 80%; height: auto;">
+                    <!-- Your video here -->
+                    <source src="static/videos/compression_Bosphorus_minute1_nerv-enerv-hnerv-nvp-nvtm.mp4"
+                        type="video/mp4">
+                </video>
+                <h2 class="subtitle has-text-centered">
+                    <span style="font-weight: bold;">Train after 1 minute. <br>(Bosphorus sequence from UVG)</span>
+                </h2>
+            </div>
+        </div>
+    </section>
+    <!-- End video compression -->
+
+    <!-- Video frame interpolation carousel -->
+    <section class="hero is-small">
+        <div class="hero-body">
+            <div class="container  is-max-desktop">
+                <h2 class="title is-3">Video Frame Interpolation</h2>
+                <div id="results-carousel" class="carousel results-carousel">
+                    <div class="item item-video1">
+                        <video poster="" id="vfi_video1" playsinline autoplay muted loop height="90%"
+                            src="static/videos/vfi_Bosphorus_nvp-nvtm.mp4">
+                        </video>
+                        <h2 class="subtitle has-text-centered">
+                            <span style="font-weight: bold;">Black background: Interpolated timestep <br>(Bosphorus
+                                sequence from UVG)</span>
+                        </h2>
+                    </div>
+                    <div class="item item-video2">
+                        <video poster="" id="vfi_video2" playsinline autoplay muted loop height="90%"
+                            src="static/videos/vfi_Jockey_nvp-nvtm.mp4">
+                        </video>
+                        <h2 class="subtitle has-text-centered">
+                            <span style="font-weight: bold;">Black background: Interpolated timestep <br>(Jockey
+                                sequence from UVG)</span>
+                        </h2>
+                    </div>
+                    <div class="item item-video3">
+                        <video poster="" id="vfi_video3" playsinline autoplay muted loop height="90%"
+                            src="static/videos/vfi_ReadySteadyGo_nvp-nvtm.mp4">
+                        </video>
+                        <h2 class="subtitle has-text-centered">
+                            <span style="font-weight: bold;">Black background: Interpolated timestep <br>(ReadySetGo
+                                sequence from UVG)</span>
+                        </h2>
+                    </div>
+                    <div class="item item-video4">
+                        <video poster="" id="vfi_video4" playsinline autoplay muted loop height="90%"
+                            src="static/videos/vfi_YachtRide_nvp-nvtm.mp4">
+                        </video>
+                        <h2 class="subtitle has-text-centered">
+                            <span style="font-weight: bold;">Black background: Interpolated timestep <br>(YachtRide
+                                sequence from UVG)</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End video frame inteprolation carousel -->
+
+    <!-- Video inpainting carousel -->
+    <section class="hero is-small is-light">
+        <div class="hero-body">
+            <div class="container  is-max-desktop">
+                <h2 class="title is-3">Video Inpainting</h2>
+                <div id="results-carousel" class="carousel results-carousel">
+                    <div class="item item-image1">
+                        <img src="static/images/inpainting_blackswan.png" alt="Video Inpainting"
+                            class="center-image blend-img-background" />
+                        <h2 class="subtitle has-text-centered">
+                            <span style="font-weight: bold;">Encoded with randomly-generated black boxes <br>(Blackswan
+                                sequence from DAVIS-2017)</span>
+                        </h2>
+                    </div>
+                    <div class="item item-image2">
+                        <img src="static/images/inpainting_camel.png" alt="Video Inpainting"
+                            class="center-image blend-img-background" />
+                        <h2 class="subtitle has-text-centered">
+                            <span style="font-weight: bold;">Encoded with randomly-generated black boxes <br>(Camel
+                                sequence from DAVIS-2017)</span>
+                        </h2>
+                    </div>
+                    <div class="item item-image3">
+                        <img src="static/images/inpainting_cows.png" alt="Video Inpainting"
+                            class="center-image blend-img-background" />
+                        <h2 class="subtitle has-text-centered">
+                            <span style="font-weight: bold;">Encoded with randomly-generated black boxes <br>(Cow
+                                sequence from DAVIS-2017)</span>
+                        </h2>
+                    </div>
+                    <div class="item item-image4">
+                        <img src="static/images/inpainting_soapbox.png" alt="Video Inpainting"
+                            class="center-image blend-img-background" />
+                        <h2 class="subtitle has-text-centered">
+                            <span style="font-weight: bold;">Encoded with randomly-generated black boxes <br>(Soapbox
+                                sequence from DAVIS-2017)</span>
+                        </h2>
+                    </div>
+                    <div class="item item-image5">
+                        <img src="static/images/inpainting_tennis.png" alt="Video Inpainting"
+                            class="center-image blend-img-background" />
+                        <h2 class="subtitle has-text-centered">
+                            <span style="font-weight: bold;">Encoded with randomly-generated black boxes <br>(Tennis
+                                sequence from DAVIS-2017)</span>
+                        </h2>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End video inpainting carousel -->
+
+    <!-- Paper poster -->
+    <!-- <section class="hero is-small is-light">
+        <div class="hero-body">
+            <div class="container">
+                <h2 class="title">Poster</h2>
+
+                <iframe src="static/pdfs/sample.pdf" width="100%" height="550">
+                </iframe>
+
+            </div>
+        </div>
+    </section> -->
+    <!--End paper poster -->
+
+
+    <!--BibTex citation -->
+    <!-- <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>BibTex Code Here</code></pre>
+        </div>
+    </section> -->
+    <!--End BibTex citation -->
+
+
+    <!-- <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+
+                        <p>
+                            This page was built using the <a
+                                href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                                target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                                href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                            You are free to borrow the source code of this website, we just ask that you link back to
+                            this page in the footer. <br> This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                                Commons Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer> -->
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
